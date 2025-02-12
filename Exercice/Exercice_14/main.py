@@ -12,12 +12,9 @@ def longest_slide_down(pyramid):
 
 def longest_slide_down2(p):
     res = p.pop()
-    print(res)
     while p:
         tmp = p.pop()
         res = [tmp[i] + max(res[i],res[i+1])  for i in range(len(tmp))] 
-        print(tmp)
-        print(res)
     return res.pop()
 
 
