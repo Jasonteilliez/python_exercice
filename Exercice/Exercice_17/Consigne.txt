@@ -1,0 +1,181 @@
+Consider a "word" as any sequence of capital letters A-Z (not limited to just "dictionary words"). 
+For any word with at least two different letters, there are other words composed of the same letters 
+but in a different order (for instance, STATIONARILY/ANTIROYALIST, which happen to both be dictionary words; 
+for our purposes "AAIILNORSTTY" is also a "word" composed of the same letters as these two).
+
+We can then assign a number to every word, based on where it falls in an alphabetically sorted list 
+of all words made up of the same group of letters. One way to do this would be to generate the entire 
+list of words and find the desired one, but this would be slow if the word is long.
+
+Sample words, with their rank:
+ABAB = 2
+AAAB = 1
+BAAA = 4
+QUESTION = 24572
+BOOKKEEPER = 10743
+
+############## without duplicate ##############
+
+abcd
+4321 : 1
+4312 : 2
+4231 : 3
+4213 : 4
+4132 : 5 
+4123 : 6
+3421 : 7
+3412 : 8
+3241 : 9
+3214 : 10
+3142 : 11
+3124 : 12
+2431 : 13
+2413 : 14
+2341 : 15
+2314 : 16
+2143 : 17
+2134 : 18
+1432 : 19
+1423 : 20
+1342 : 21
+1324 : 22
+1243 : 23
+1234 : 24
+
+1 : 1
+2 : 2*1
+3 : 3*2*1
+4 : 4*3*2*1
+.
+.
+.
+25 : 15511210043330985984000000
+
+
+3214
+
+1+1*3! = 7
+1+1*3!+1*2! = 9
+1+1*3!+1*2!+1*1! = 10
+
+
+QUESTION
+n=8
+
+r=1
+""
+"EINOQSTU"
+
+r = 1+4*7! = 20161
+"Q"
+"EINOSTU"
+
+r = 1 + 4*7! + 6*6! = 24481
+"QU"
+"EINOST"
+
+r = 1 + 4*7! + 6*6! + 0*5! = 24481
+"QUE"
+"INOST"
+
+r = 1 + 4*7! + 6*6! + 0*5! + 3*4!= 24553
+"QUES"
+"INOT"
+
+r = 1 + 4*7! + 6*6! + 0*5! + 3*4! + 3*3! = 24571
+"QUEST"
+"INO"
+
+r = 1 + 4*7! + 6*6! + 0*5! + 3*4! + 3*3! + 0*2! = 24571
+"QUESTI"
+"NO"
+
+r = 1 + 4*7! + 6*6! + 0*5! + 3*4! + 3*3! + 0*2! + 1*1! = 24572
+"QUESTIO"
+"N"
+
+r = 1 + 4*7! + 6*6! + 0*5! + 3*4! + 3*3! + 0*2! + 1*1! + 0*0! = 24572
+"QUESTION"
+""
+
+############## with duplicate ##############
+
+abbc    aabc
+3221    3321
+3212    3312
+3122    3231
+2321    3213
+2312    3132
+2231    3123
+2213    2331
+2132    2313
+2123    2133
+1322    1331
+1232    1313
+1223    1133
+
+4!/2!
+
+abbb    aabb        aaabb
+2111    2211        22211
+1211    2121        22121
+1121    2112        22112
+1112    1221        21221
+        1212        21212
+        1122        21122
+                    12221
+                    12212
+                    12122
+                    11222
+
+4!/3!   4!/(2!*2!)  5!/((2!*3!))
+
+BOOKKEEPER
+BEEEKKOOPR
+10!/(2!*2!*3!) = 151200
+
+r = 1
+""
+"BEEEKKOOPR"
+
+r = 1 + 0*9! = 1
+"B"
+"EEEKKOOPR"
+
+r = 1 + 6*8!? =          
+"BO"
+"EEEKKOPR"
+
+r = 1 + ? + 6*7!? =    
+"BOO"
+"EEEKKPR"
+
+r = 1 + ? + 4*6!? = 
+"BOOK"
+"EEEKPR"
+
+r = 1 + ? + 4*5!? = 10741   
+"BOOKK"
+"EEEPR"
+
+r = 1 + ? + 0*4! = 10741
+"BOOKKE"
+"EEPR"
+
+r = 1 + ? + 0*4! + 0*3! = 10741
+"BOOKKEE"
+"EPR"
+
+r = 1 + ? + 0*4! + 0*3! + 1*2! = 10743
+"BOOKKEEP"
+"ER"
+
+r = 1 + ? + 0*4! + 0*3! + 1*2! + 0*1! = 10743
+"BOOKKEEPE"
+"R"
+
+r = 1 + ? + 0*4! + 0*3! + 1*2! + 0*1! + 0*0! = 10743
+"BOOKKEEPER"
+""
+
+
